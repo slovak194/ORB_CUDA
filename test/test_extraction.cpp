@@ -23,7 +23,7 @@ int main(int argc, char* argv[]) {
   int fIniThFAST = 20;
   int fMinThFAST = 7;
 
-  auto extractor = ORB_SLAM2::ORBextractor(nFeatures, fScaleFactor, nLevels, fIniThFAST, fMinThFAST);
+  auto extractor = ORB_CUDA::ORBextractor(nFeatures, fScaleFactor, nLevels, fIniThFAST, fMinThFAST);
 
   std::vector<cv::KeyPoint> keypoints;
   cv::Mat descriptors;
@@ -34,7 +34,7 @@ int main(int argc, char* argv[]) {
   std::vector<double> track_times;
 
   bool show = false;
-  int n_frames = 100;
+  int n_frames = 10;
 
   while (true) {
     auto frames = loader.next();

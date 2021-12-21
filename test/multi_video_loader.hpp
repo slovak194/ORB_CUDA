@@ -1,5 +1,4 @@
-#ifndef OPENVSLAM_EXPERIMENTAL_TEST_TRIANGULATION_CC_MULTIVIDEOLOADER_HPP_
-#define OPENVSLAM_EXPERIMENTAL_TEST_TRIANGULATION_CC_MULTIVIDEOLOADER_HPP_
+#pragma once
 
 #include <opencv2/videoio.hpp>
 #include <opencv2/imgproc.hpp>
@@ -37,4 +36,3 @@ private:
     std::vector<cv::VideoCapture> m_caps;
 };
 
-#endif //OPENVSLAM_EXPERIMENTAL_TEST_TRIANGULATION_CC_MULTIVIDEOLOADER_HPP_

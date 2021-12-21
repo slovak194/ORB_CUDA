@@ -8,7 +8,7 @@
 #include <cuda_runtime.h>
 #include <cuda/Cuda.hpp>
 
-namespace ORB_SLAM2 { namespace cuda {
+namespace ORB_CUDA { namespace cuda {
   using namespace std;
   using namespace cv;
   using namespace cv::cuda;
