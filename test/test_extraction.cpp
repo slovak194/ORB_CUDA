@@ -6,16 +6,22 @@
 #include <fstream>
 #include <iostream>
 
-#include "multi_video_loader.hpp"
-
 #include <ORBextractor.h>
 
 #include <opencv2/highgui/highgui.hpp>
 #include <opencv2/features2d.hpp>
 
-int main(int argc, char* argv[]) {
+int main(int argc, char *argv[]) {
 
-  auto loader = multi_video_loader("/home/slovak/Downloads/fishbot/logs/slam_datasets/flight2-aarhus-with-tunnel/dump_0_video0.mp4", 300, 25);
+  cv::Mat image = cv::imread("../test/vlcsnap-2021-12-22-14h05m41s129.png", cv::IMREAD_GRAYSCALE);
+
+  assert(image.rows > 0);
+  assert(image.cols > 0);
+
+  cv::Mat noise(image.size(), image.type());
+  float m = 10;
+  float sigma = 10;
+
 
   int nFeatures = 5000;
   float fScaleFactor = 1.2;
@@ -37,14 +43,13 @@ int main(int argc, char* argv[]) {
   int n_frames = 10;
 
   while (true) {
-    auto frames = loader.next();
-    if (frames.empty() or n_frames <= 0) {
-      break;
-    }
+
+    cv::randn(noise, m, sigma);
+    image += noise;
 
     const auto tp_1 = std::chrono::steady_clock::now();
 
-    extractor(frames.back(), cv::Mat(), keypoints, descriptors);
+    extractor.extract(image, cv::Mat(), keypoints, descriptors);
 
     const auto tp_2 = std::chrono::steady_clock::now();
 
@@ -54,22 +59,21 @@ int main(int argc, char* argv[]) {
 
     n_frames = n_frames - 1;
 
-//    std::cout << n_frames << " " << 1/track_time << "\n";
+    std::cout << n_frames << " " << 1/track_time << " " << image.rows << " " << image.cols << "\n";
 
-    if (show) {
+    cv::drawKeypoints(image, keypoints, out, cv::Scalar::all(-1), cv::DrawMatchesFlags::DEFAULT);
 
-      cv::drawKeypoints(frames.back(), keypoints, out, cv::Scalar::all(-1), cv::DrawMatchesFlags::DEFAULT);
+    cv::imshow("out", out);
+    cv::resizeWindow("out", 1280, 720);
+    int k = cv::waitKey(-1);
+    if (k == 'q') {
+      break;
+    }
 
-      cv::imshow("out", out);
-      cv::resizeWindow("out", 1280, 720);
-      int k = cv::waitKey(-1);
-      if (k == 'q') {
-        break;
-      }
+    image -= noise;
 
-      if (k == ' ') {
-        continue;
-      }
+    if (k == ' ') {
+      continue;
     }
 
   }
@@ -81,7 +85,6 @@ int main(int argc, char* argv[]) {
     }
     ofs.close();
   }
-
 
   return 0;
 }

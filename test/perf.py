@@ -16,3 +16,10 @@ with open(track_times_fiel_path) as ff:
 plt.plot(1/track_times, ".")
 plt.plot(0, 0)
 
+# %%
+
+# nvprof --export-profile timeline.prof app
+#
+# nvprof --metrics achieved_occupancy,ipc -o metrics.prof <app>
+
+

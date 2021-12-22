@@ -1,8 +1,20 @@
 cmake_minimum_required(VERSION 3.17)
 
-set(CMAKE_CUDA_COMPILER "/usr/local/cuda-11.0/bin/nvcc")
+execute_process(
+        COMMAND bash -c "uname -m"
+        OUTPUT_VARIABLE CMAKE_HOST_SYSTEM_PROCESSOR
+)
+
+if (${CMAKE_HOST_SYSTEM_PROCESSOR} MATCHES "aarch64")
+    set(CMAKE_CUDA_COMPILER "/usr/local/cuda-10.2/bin/nvcc")
+else (${CMAKE_HOST_SYSTEM_PROCESSOR} MATCHES "aarch64")
+    set(CMAKE_CUDA_COMPILER "/usr/local/cuda-11.0/bin/nvcc")
+endif (${CMAKE_HOST_SYSTEM_PROCESSOR} MATCHES "aarch64")
+
+message(STATUS "Build for: ${CMAKE_HOST_SYSTEM_PROCESSOR}")
 
 project(orb_cuda LANGUAGES C CXX CUDA)
+
 
 set(CMAKE_POSITION_INDEPENDENT_CODE ON)
 
@@ -38,7 +50,13 @@ add_library(${PROJECT_NAME} SHARED
         src/cuda/Cuda.cu
         )
 
-set_target_properties(${PROJECT_NAME} PROPERTIES CUDA_ARCHITECTURES "50")
+
+if (${CMAKE_HOST_SYSTEM_PROCESSOR} STREQUAL "aarch64")
+    set_target_properties(${PROJECT_NAME} PROPERTIES CUDA_ARCHITECTURES "72")
+else (${CMAKE_HOST_SYSTEM_PROCESSOR} STREQUAL "aarch64")
+    set_target_properties(${PROJECT_NAME} PROPERTIES CUDA_ARCHITECTURES "50")
+endif (${CMAKE_HOST_SYSTEM_PROCESSOR} STREQUAL "aarch64")
+
 
 target_link_libraries(${PROJECT_NAME}
         ${OpenCV_LIBS}
@@ -48,3 +66,6 @@ target_link_libraries(${PROJECT_NAME}
         )
 
 add_subdirectory(test)
+
+
+#add_subdirectory(/home/slovak/openvslam_community /home/slovak/openvslam_community/build)

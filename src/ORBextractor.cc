@@ -743,7 +743,7 @@ void ORBextractor::ComputeKeyPointsOctTree(vector<vector<KeyPoint>>& allKeypoint
     ic_angle.join(allKeypoints[nlevels-1].data(), allKeypoints[nlevels-1].size());
 }
 
-void ORBextractor::operator()( InputArray _image, InputArray _mask, vector<KeyPoint>& _keypoints,
+void ORBextractor::extract( InputArray _image, InputArray _mask, vector<KeyPoint>& _keypoints,
                       OutputArray _descriptors)
 { 
     PUSH_RANGE("ORBextractor", 0);
