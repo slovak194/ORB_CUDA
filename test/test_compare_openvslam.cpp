@@ -39,7 +39,7 @@ int main(int argc, char *argv[]) {
     std::vector<cv::KeyPoint> keypoints;
     cv::Mat descriptors;
     std::vector<double> track_times;
-    int n_frames = 10;
+    int n_frames = 100;
 
     while (n_frames >= 0) {
 
@@ -79,7 +79,7 @@ int main(int argc, char *argv[]) {
     std::vector<cv::KeyPoint> keypoints;
     cv::Mat descriptors;
     std::vector<double> track_times;
-    int n_frames = 10;
+    int n_frames = 100;
 
     while (n_frames >= 0) {
 

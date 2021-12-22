@@ -39,7 +39,6 @@ int main(int argc, char *argv[]) {
 
   std::vector<double> track_times;
 
-  bool show = false;
   int n_frames = 10;
 
   while (true) {
