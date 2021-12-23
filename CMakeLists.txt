@@ -5,6 +5,8 @@ project(orb_cuda LANGUAGES C CXX CUDA)
 include(cmake/cuda_helpers.cmake)
 detect_cuda_arch()
 
+include(GNUInstallDirs)
+
 set(CMAKE_POSITION_INDEPENDENT_CODE ON)
 
 set(CMAKE_CXX_STANDARD 17)
@@ -43,7 +45,16 @@ target_link_libraries(${PROJECT_NAME}
 
 set_target_properties(${PROJECT_NAME}
         PROPERTIES CUDA_ARCHITECTURES "${CUDA_ARCH_LIST}"
+        PUBLIC_HEADER ${PROJECT_SOURCE_DIR}/include/${PROJECT_NAME}/ORBextractor.h
+        )
+
+install(TARGETS ${PROJECT_NAME}
+        PUBLIC_HEADER DESTINATION include/${PROJECT_NAME}
+        LIBRARY DESTINATION lib
         )
 
 add_subdirectory(test)
 add_subdirectory(test_compare)
+
+MESSAGE(STATUS)
+MESSAGE(STATUS "---------------------------------")
