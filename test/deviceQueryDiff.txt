@@ -1,0 +1,42 @@
+diff --git a/./deviceQueryXavier.txt b/./deviceQueryGeForce940MX.txt
+index 790393c..29b6cb7 100644
+--- a/./deviceQueryXavier.txt
++++ b/./deviceQueryGeForce940MX.txt
+@@ -2,18 +2,18 @@
+#
+# Detected 1 CUDA Capable device(s)
+#
+# Device 0: [-"Xavier"-]{+"GeForce 940MX"+}
+# CUDA Driver Version / Runtime Version          [-10.0-]{+11.2+} / [-10.0-]{+11.0+}
+# CUDA Capability Major/Minor version number:    [-7.2-]{+5.0+}
+# Total amount of global memory:                 [-15820-]{+2004+} MBytes [-(16588668928-]{+(2101870592+} bytes)
+# ( [-8)-]{+3)+} Multiprocessors, [-( 64)-]{+(128)+} CUDA Cores/MP:     [-512-]{+384+} CUDA Cores
+# GPU Max Clock rate:                            [-1500-]{+1189+} MHz [-(1.50-]{+(1.19+} GHz)
+# Memory Clock rate:                             [-1500-]{+2505+} Mhz
+# Memory Bus Width:                              [-256-bit-]{+64-bit+}
+# L2 Cache Size:                                 [-524288-]{+1048576+} bytes
+# Maximum Texture Dimension Size (x,y,z)         [-1D=(131072), 2D=(131072,-]{+1D=(65536), 2D=(65536,+} 65536), [-3D=(16384, 16384, 16384)-]{+3D=(4096, 4096, 4096)+}
+# Maximum Layered 1D Texture Size, (num) layers  [-1D=(32768),-]{+1D=(16384),+} 2048 layers
+# Maximum Layered 2D Texture Size, (num) layers  [-2D=(32768, 32768),-]{+2D=(16384, 16384),+} 2048 layers
+# Total amount of constant memory:               65536 bytes
+# Total amount of shared memory per block:       49152 bytes
+# Total number of registers available per block: 65536
+@@ -25,18 +25,18 @@
+# Maximum memory pitch:                          2147483647 bytes
+# Texture alignment:                             512 bytes
+# Concurrent copy and kernel execution:          Yes with 1 copy engine(s)
+# Run time limit on kernels:                     [-No-]{+Yes+}
+# Integrated GPU sharing Host Memory:            [-Yes-]{+No+}
+# Support host page-locked memory mapping:       Yes
+# Alignment requirement for Surfaces:            Yes
+# Device has ECC support:                        Disabled
+# Device supports Unified Addressing (UVA):      Yes
+# Device supports Compute Preemption:            [-Yes-]{+No+}
+# Supports Cooperative Kernel Launch:            [-Yes-]{+No+}
+# Supports MultiDevice Co-op Kernel Launch:      [-Yes-]{+No+}
+# Device PCI Domain ID / Bus ID / location ID:   0 / [-0-]{+2+} / 0
+# Compute Mode:
+# < Default (multiple host threads can use ::cudaSetDevice() with device simultaneously) >
+#
+# deviceQuery, CUDA Driver = CUDART, CUDA Driver Version = [-10.0,-]{+11.2,+} CUDA Runtime Version = [-10.0,-]{+11.0,+} NumDevs = [-1-]{+1, Device0 = GeForce 940MX+}
+# Result = PASS

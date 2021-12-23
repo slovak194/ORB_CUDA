@@ -15,15 +15,12 @@ int main(int argc, char *argv[]) {
 
   cv::Mat image = cv::imread("../test/vlcsnap-2021-12-22-14h05m41s129.png", cv::IMREAD_GRAYSCALE);
 
+  cv::resize(image, image, cv::Size(image.cols/2, image.rows/2), cv::INTER_LINEAR);
+
   assert(image.rows > 0);
   assert(image.cols > 0);
 
-  cv::Mat noise(image.size(), image.type());
-  float m = 10;
-  float sigma = 10;
-
-
-  int nFeatures = 5000;
+  int nFeatures = 100;
   float fScaleFactor = 1.2;
   int nLevels = 8;
   int fIniThFAST = 20;
@@ -39,12 +36,7 @@ int main(int argc, char *argv[]) {
 
   std::vector<double> track_times;
 
-  int n_frames = 10;
-
   while (true) {
-
-    cv::randn(noise, m, sigma);
-    image += noise;
 
     const auto tp_1 = std::chrono::steady_clock::now();
 
@@ -56,11 +48,9 @@ int main(int argc, char *argv[]) {
 
     track_times.push_back(track_time);
 
-    n_frames = n_frames - 1;
+    std::cout << 1/track_time << "\n";
 
-    std::cout << n_frames << " " << 1/track_time << " " << image.rows << " " << image.cols << "\n";
-
-    cv::drawKeypoints(image, keypoints, out, cv::Scalar::all(-1), cv::DrawMatchesFlags::DEFAULT);
+    cv::drawKeypoints(image, keypoints, out, cv::Scalar::all(-1), cv::DrawMatchesFlags::DRAW_RICH_KEYPOINTS);
 
     cv::imshow("out", out);
     cv::resizeWindow("out", 1280, 720);
@@ -68,8 +58,6 @@ int main(int argc, char *argv[]) {
     if (k == 'q') {
       break;
     }
-
-    image -= noise;
 
     if (k == ' ') {
       continue;

@@ -313,6 +313,7 @@ namespace ORB_CUDA { namespace cuda {
         }
       }
     }
+
     // barrieer
     __syncthreads();
     if (hasKp) return ;
@@ -371,9 +372,13 @@ namespace ORB_CUDA { namespace cuda {
     scoreMat.setTo(Scalar::all(0), cvStream);
     checkCudaErrors( cudaMemsetAsync(counter_ptr, 0, sizeof(unsigned int), stream) );
 
-    dim3 dimBlock(32, 8);
-    dim3 dimGrid(divUp(image.cols, dimBlock.x), divUp(image.rows, dimBlock.y * 4));
-    tileCalcKeypoints_kernel<<<dimGrid, dimBlock, 0, stream>>>(image, kpLoc, kpScore, maxKeypoints, highThreshold, lowThreshold, scoreMat, counter_ptr);
+    constexpr unsigned int maxThreadsPerBlock = 1024U;
+    constexpr unsigned int blockX = 32;
+    constexpr unsigned int blockY = (maxThreadsPerBlock / blockX) / 4U;
+    dim3 threadsPerBlock(blockX, blockY);
+    dim3 numBlocks(divUp(image.cols, threadsPerBlock.x), divUp(image.rows, threadsPerBlock.y * 4));
+//    printf("dimGrid (%d, %d, %d) dimBlock (%d, %d, %d)\n", numBlocks.x, numBlocks.y, numBlocks.z, threadsPerBlock.x, threadsPerBlock.y, threadsPerBlock.z);
+    tileCalcKeypoints_kernel<<<numBlocks, threadsPerBlock, 0, stream>>>(image, kpLoc, kpScore, maxKeypoints, highThreshold, lowThreshold, scoreMat, counter_ptr);
     checkCudaErrors( cudaGetLastError() );
   }
 

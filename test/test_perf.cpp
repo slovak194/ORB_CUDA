@@ -15,6 +15,8 @@ int main(int argc, char *argv[]) {
 
   cv::Mat image = cv::imread("../test/vlcsnap-2021-12-22-14h05m41s129.png", cv::IMREAD_GRAYSCALE);
 
+  cv::resize(image, image, cv::Size(image.cols/2, image.rows/2), cv::INTER_LINEAR);
+
   assert(image.rows > 0);
   assert(image.cols > 0);
 

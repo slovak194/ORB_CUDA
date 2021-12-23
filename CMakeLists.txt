@@ -30,7 +30,14 @@ find_package(Eigen3 REQUIRED NO_MODULE)
 find_package(CUDA REQUIRED)
 
 #set(CMAKE_CUDA_FLAGS "--verbose --compiler-options -fno-strict-aliasing -use_fast_math ${CMAKE_CUDA_FLAGS}")
-set(CMAKE_CUDA_FLAGS "--compiler-options -fno-strict-aliasing -use_fast_math ${CMAKE_CUDA_FLAGS}")
+set(CMAKE_CUDA_FLAGS "--compiler-options -fno-strict-aliasing -use_fast_math -lineinfo ${CMAKE_CUDA_FLAGS}")
+
+# TODO, replace with
+#target_compile_options(target PRIVATE $<$<COMPILE_LANGUAGE:CUDA>:
+#        --generate-line-info
+#        --use_fast_math
+#        --relocatable-device-code=true
+#        >)
 
 include_directories(
         ${CUDA_INCLUDE_DIRS}
