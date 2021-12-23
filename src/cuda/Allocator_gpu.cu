@@ -1,6 +1,6 @@
 #include <cassert>
 #include <helper_cuda.h>
-#include <cuda/Allocator.hpp>
+#include <orb_cuda/cuda/Allocator.hpp>
 
 namespace ORB_CUDA { namespace cuda {
 

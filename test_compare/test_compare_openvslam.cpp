@@ -9,8 +9,9 @@
 #include <iostream>
 
 #include <opencv2/imgcodecs.hpp>
+#include <opencv2/imgproc.hpp>
 
-#include <ORBextractor.h>
+#include <orb_cuda/ORBextractor.h>
 
 #include "openvslam/feature/orb_extractor.h"
 

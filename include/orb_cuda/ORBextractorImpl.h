@@ -27,8 +27,8 @@
 #include <opencv2/core/core.hpp>
 #include <opencv2/core/cuda.hpp>
 #include <opencv2/cudafilters.hpp>
-#include <cuda/Fast.hpp>
-#include <cuda/Orb.hpp>
+#include <orb_cuda/cuda/Fast.hpp>
+#include <orb_cuda/cuda/Orb.hpp>
 
 namespace ORB_CUDA {
 
@@ -45,15 +45,15 @@ public:
     bool bNoMore;
 };
 
-class ORBextractor
+class ORBextractorImpl
 {
 public:
 
     enum {HARRIS_SCORE=0, FAST_SCORE=1 };
 
-    ORBextractor(int nfeatures, float scaleFactor, int nlevels, int iniThFAST, int minThFAST);
+    ORBextractorImpl(int nfeatures, float scaleFactor, int nlevels, int iniThFAST, int minThFAST);
 
-    ~ORBextractor(){}
+    ~ORBextractorImpl(){}
 
     // Compute the ORB features and descriptors on an image.
     // ORB are dispersed on the image using an octree.

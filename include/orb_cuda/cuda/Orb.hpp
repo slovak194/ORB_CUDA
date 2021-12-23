@@ -6,7 +6,7 @@
 #include <opencv2/core/cuda.hpp>
 #include <opencv2/core/cuda_stream_accessor.hpp>
 #include <cuda_runtime.h>
-#include <cuda/Cuda.hpp>
+#include <orb_cuda/cuda/Cuda.hpp>
 
 namespace ORB_CUDA { namespace cuda {
   using namespace std;

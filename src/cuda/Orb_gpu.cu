@@ -45,8 +45,8 @@
 #include "opencv2/core/cuda/reduce.hpp"
 #include "opencv2/core/cuda/functional.hpp"
 #include <helper_cuda.h>
-#include <cuda/Orb.hpp>
-#include <Utils.hpp>
+#include <orb_cuda/cuda/Orb.hpp>
+#include <orb_cuda/Utils.hpp>
 
 using namespace cv;
 using namespace cv::cuda;

@@ -1,3 +1,5 @@
+find_package(Eigen3 REQUIRED NO_MODULE)
+
 find_package(OpenMP REQUIRED)
 if (NOT TARGET OpenMP::OpenMP_CXX)
     add_library(OpenMP::OpenMP_CXX IMPORTED INTERFACE)
