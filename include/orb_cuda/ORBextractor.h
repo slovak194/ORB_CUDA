@@ -25,17 +25,17 @@ class ORBextractor {
                 std::vector<cv::KeyPoint>& keypoints,
                 cv::OutputArray descriptors);
 
-  int inline GetLevels();
+  int GetLevels();
 
-  float inline GetScaleFactor();
+  float GetScaleFactor();
 
-  std::vector<float> inline GetScaleFactors();
+  std::vector<float> GetScaleFactors();
 
-  std::vector<float> inline GetInverseScaleFactors();
+  std::vector<float> GetInverseScaleFactors();
 
-  std::vector<float> inline GetScaleSigmaSquares();
+  std::vector<float> GetScaleSigmaSquares();
 
-  std::vector<float> inline GetInverseScaleSigmaSquares();
+  std::vector<float> GetInverseScaleSigmaSquares();
 
  private:
   std::unique_ptr<ORBextractorImpl> m_impl;

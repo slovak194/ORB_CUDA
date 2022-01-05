@@ -21,26 +21,26 @@ void ORBextractor::extract(cv::InputArray image, cv::InputArray mask,
   m_impl->extract(image, mask, keypoints, descriptors);
 }
 
-int inline ORBextractor::GetLevels() {
+int ORBextractor::GetLevels() {
   return m_impl->GetLevels();
 }
 
-float inline ORBextractor::GetScaleFactor() {
+float ORBextractor::GetScaleFactor() {
   return m_impl->GetScaleFactor();
 }
 
-std::vector<float> inline ORBextractor::GetScaleFactors() {
+std::vector<float> ORBextractor::GetScaleFactors() {
   return m_impl->GetScaleFactors();
 }
 
-std::vector<float> inline ORBextractor::GetInverseScaleFactors() {
+std::vector<float> ORBextractor::GetInverseScaleFactors() {
   return m_impl->GetInverseScaleFactors();
 }
 
-std::vector<float> inline ORBextractor::GetScaleSigmaSquares() {
+std::vector<float> ORBextractor::GetScaleSigmaSquares() {
   return m_impl->GetScaleSigmaSquares();
 }
 
-std::vector<float> inline ORBextractor::GetInverseScaleSigmaSquares() {
+std::vector<float> ORBextractor::GetInverseScaleSigmaSquares() {
   return m_impl->GetInverseScaleSigmaSquares();
 }
