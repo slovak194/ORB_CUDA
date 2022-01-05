@@ -1,4 +1,5 @@
-cmake_minimum_required(VERSION 3.17)
+#cmake_minimum_required(VERSION 3.17)
+cmake_minimum_required(VERSION 3.10)
 
 project(orb_cuda LANGUAGES C CXX CUDA)
 
@@ -19,6 +20,9 @@ find_package(OpenCV REQUIRED)
 
 #set(CMAKE_CUDA_FLAGS "--verbose --compiler-options -fno-strict-aliasing -use_fast_math -lineinfo ${CMAKE_CUDA_FLAGS}")
 set(CMAKE_CUDA_FLAGS "--compiler-options -fno-strict-aliasing -use_fast_math ${CMAKE_CUDA_FLAGS}")
+
+add_definitions(-DPROJECT_SOURCE_DIR="${PROJECT_SOURCE_DIR}")
+
 
 add_library(${PROJECT_NAME} SHARED
         src/ORBextractor.cc
