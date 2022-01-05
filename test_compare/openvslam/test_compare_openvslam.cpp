@@ -24,7 +24,10 @@ int main(int argc, char *argv[]) {
   int fIniThFAST = 20;
   int fMinThFAST = 7;
 
-  cv::Mat image = cv::imread("../test/vlcsnap-2021-12-22-14h05m41s129.png", cv::IMREAD_GRAYSCALE);
+  std::string image_file_path = PROJECT_SOURCE_DIR"/test/vlcsnap-2021-12-22-14h05m41s129.png";
+  std::cout << image_file_path << "\n";
+  cv::Mat image = cv::imread(image_file_path, cv::IMREAD_GRAYSCALE);
+  assert(!image.empty());
 
   cv::resize(image, image, cv::Size(image.cols/2, image.rows/2), cv::INTER_LINEAR);
 
